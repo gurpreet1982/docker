@@ -18,4 +18,4 @@ services:
 
 volumes:
  teamcity-server-datadir:
- teamcity-derver-logs:
+ teamcity-server-logs:
