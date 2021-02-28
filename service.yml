@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+ webapiconsumer:
+  image: docker.io/gurpreet1982/webapiconsumer:latest
+  ports:
+   - "8080:80"
+  depends_on:
+   - "forecastservice"
+  networks:
+   - net1
+  deploy:
+   mode: replicated
+   replicas: 2
+   placement:
+    constraints:
+     - "node.role==manager"
+
+ forecastservice:
+  image: docker.io/gurpreet1982/apigenerator:latest
+  networks:
+   - net1
+  deploy:
+   mode: replicated
+   replicas: 2
+   placement:
+    constraints:
+     - "node.role==manager"
+
+networks:
+ net1:
+  driver:
+   overlay
